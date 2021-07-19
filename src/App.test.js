@@ -1,17 +1,16 @@
-import { render, screen } from '@testing-library/react';
+// import { render, screen } from '@testing-library/react';
+
+import { mount, shallow } from 'enzyme';
+import Counter from './components/Counter';
 import App from './App';
 
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-configure({ adapter: new Adapter() });
 
 describe('Counter Testing', () => {
 
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<App />);
+    wrapper = shallow(<Counter />);
   });
 
   test('render the title of counter', () => {
@@ -41,10 +40,7 @@ describe('Counter Testing', () => {
   });
 
   test('render the click event of decrement button and if the counter value is 0 stop decrement', () => {
-    let counter = wrapper.find("#counter-value").text();
-    if(counter == "0") {
-      wrapper.find('#decrement-btn').hasClass('disabled');
-    }
+    wrapper.find('#decrement-btn').hasClass('disabled');
   })
 });
 
